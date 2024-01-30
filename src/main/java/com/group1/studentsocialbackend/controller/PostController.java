@@ -16,7 +16,7 @@ public class PostController {
     @Resource
     private PostService postService;
     // Create a new post
-    @PostMapping
+    @PostMapping("/create")
     public Post createPost(@RequestBody Post post) {
         return postService.createOne(post);
     }

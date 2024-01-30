@@ -5,14 +5,21 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-@TableName("Users")
+@TableName("User")
 public class User {
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "id", type = IdType.ASSIGN_UUID)
+    private String id;
 
-    private String username;
+    private String name;
     private String password;
-
+    private String email;
+    private Date expireTime;
+    private boolean isBanned;
+    private Date createTime;
+    private Date updateTime;
     // Getters and setters
+
 }
