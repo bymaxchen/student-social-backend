@@ -18,13 +18,17 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        // Implementation to retrieve and return user by ID
-        return null;
+    @GetMapping("/signin")
+    public User signin(@RequestBody User user) {
+        String email=user.getEmail();
+        //email not exist or login not success
+        if(userService.getUserByEmail(email)==null||!user.getPassword().equals(userService.getUserByEmail(email).getPassword())){
+            return null;
+        }
+        else return userService.getUserByEmail(email);
     }
     @PostMapping("/register")
     public User register(@RequestBody User user) {
-        return userService.Register(user);
+        return userService.createOneUser(user);
     }
 }
