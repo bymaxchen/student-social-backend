@@ -3,6 +3,15 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/StudentSocial?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    url: jdbc:mysql://localhost:3306/StudentSocial?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://192.168.0.57:3306/StudentSocial?useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: 123456
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+jwt:
+  expiration: 86400000
+  secret: "66886688qweasdzxcqqq66886688qweasdzxcqqq"
+cookie:
+  name: "authToken"
+  path: "/"

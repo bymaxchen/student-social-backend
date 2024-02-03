@@ -2,6 +2,7 @@ package com.group1.studentsocialbackend.service;
 
 import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.mapper.PostMapper;
+import com.group1.studentsocialbackend.util.SessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,8 @@ public class PostService {
     private PostMapper postMapper;
 
     public Post createOne(Post post) {
-        post.setCreatorId("000001");
+        post.setCreatorId(SessionContext.getUserId());
         post.setLikes(0);
-        post.setCreateTime(new Date());
-        post.setUpdateTime(new Date());
         postMapper.insert(post);
         return post;
     }

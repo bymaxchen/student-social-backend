@@ -2,6 +2,7 @@ package com.group1.studentsocialbackend.controller;
 
 import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.service.PostService;
+import com.group1.studentsocialbackend.util.SessionContext;
 import jakarta.annotation.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class PostController {
     @Resource
     private PostService postService;
     // Create a new post
-    @PostMapping("/create")
+    @PostMapping
     public Post createPost(@RequestBody Post post) {
         return postService.createOne(post);
     }
