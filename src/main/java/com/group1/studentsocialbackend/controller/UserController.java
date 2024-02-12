@@ -41,6 +41,14 @@ public class UserController {
 
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Object> logout(HttpServletResponse response) {
+        response.addCookie(CookieUtil.generateCookie(cookieConfig.getName(), "", cookieConfig.getPath()));
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<User> register(@RequestBody User user, HttpServletResponse response) {
         String email=user.getEmail();
