@@ -25,10 +25,12 @@ public class PostController {
     // Get all posts
     @GetMapping("/userposts")
     public List<Post> getAllPostsOfCurrentUser() {
-        System.out.println(SessionContext.getUserId());
         return postService.getListOfUserPosts(SessionContext.getUserId());
     }
-
+    @GetMapping("/homeposts")
+    public List<Post> getPostsForHomePage(@RequestParam("page") Integer page) {
+        return postService.getListOfPostsByTimeline(page);
+    }
     // Get a single post by id
 //    @GetMapping("/{id}")
 //    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
