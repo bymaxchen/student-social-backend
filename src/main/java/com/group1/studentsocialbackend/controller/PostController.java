@@ -1,10 +1,13 @@
 package com.group1.studentsocialbackend.controller;
 
 import com.group1.studentsocialbackend.PO.Post;
+import com.group1.studentsocialbackend.PO.User;
 import com.group1.studentsocialbackend.service.PostService;
 import com.group1.studentsocialbackend.util.SessionContext;
 import jakarta.annotation.Resource;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,18 +21,18 @@ public class PostController {
     private PostService postService;
     // Create a new post
     @PostMapping("/create")
-    public Post createPost(@RequestBody Post post) {
-        return postService.createOne(post);
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+        return new ResponseEntity<>(postService.createOne(post), HttpStatus.OK);
     }
 
     // Get all posts
     @GetMapping("/userposts")
-    public List<Post> getAllPostsOfCurrentUser() {
-        return postService.getListOfUserPosts(SessionContext.getUserId());
+    public ResponseEntity<List<Post>> getAllPostsOfCurrentUser() {
+        return new ResponseEntity<>(postService.getListOfUserPosts(SessionContext.getUserId()), HttpStatus.OK);
     }
     @GetMapping("/homeposts")
-    public List<Post> getPostsForHomePage(@RequestParam("page") Integer page) {
-        return postService.getListOfPostsByTimeline(page);
+    public ResponseEntity<List<Post>>  getPostsForHomePage(@RequestParam("page") Integer page) {
+        return new ResponseEntity<>(postService.getListOfPostsByTimeline(page), HttpStatus.OK);
     }
     // Get a single post by id
 //    @GetMapping("/{id}")

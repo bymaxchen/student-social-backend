@@ -35,9 +35,9 @@ public class PostService {
         Page<Post> pages = new Page<>(currentPage, 10);
         IPage<Post> iPage = postMapper.selectPage(pages, queryWrapper);
         //System.out.println("参数: " + currentPage);
-        System.out.println("总页数: " + iPage.getPages());
-        System.out.println("总个数: " + iPage.getTotal());
-        System.out.println("当前页: " + iPage.getCurrent());
+        System.out.println("Total Pages: " + iPage.getPages());
+        System.out.println("Total Records: " + iPage.getTotal());
+        System.out.println("Current Page: " + iPage.getCurrent());
         List<Post> postList = iPage.getRecords();
         postList.forEach(System.out::println);
         return postList;
