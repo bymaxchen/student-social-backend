@@ -47,7 +47,7 @@ public class AuthInterceptor  implements HandlerInterceptor {
 
             SessionContext.setEmail(user.getEmail());
             SessionContext.setUserId(user.getId());
-            SessionContext.setUserName(user.getName());
+            SessionContext.setUserName(user.getUsername());
             return true;
         } catch (JwtException e) {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized: Invalid JWT.");

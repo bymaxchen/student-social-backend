@@ -11,7 +11,11 @@ public class User {
     @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
 
-    private String name;
+    private String username;
+    private String firstname;
+    private String lastname;
+    private String gender;
+    private String birthdate;
     private String password;
     private String email;
     private Date expireTime;
