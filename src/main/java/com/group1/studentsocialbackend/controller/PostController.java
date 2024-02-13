@@ -4,7 +4,7 @@ import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.service.PostService;
 import com.group1.studentsocialbackend.util.SessionContext;
 import jakarta.annotation.Resource;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,15 +17,16 @@ public class PostController {
     @Resource
     private PostService postService;
     // Create a new post
-    @PostMapping
+    @PostMapping("/create")
     public Post createPost(@RequestBody Post post) {
         return postService.createOne(post);
     }
 
     // Get all posts
-    @GetMapping
-    public List<Post> getAllPosts() {
-        return postService.getList();
+    @GetMapping("/userposts")
+    public List<Post> getAllPostsOfCurrentUser() {
+        System.out.println(SessionContext.getUserId());
+        return postService.getListOfUserPosts(SessionContext.getUserId());
     }
 
     // Get a single post by id

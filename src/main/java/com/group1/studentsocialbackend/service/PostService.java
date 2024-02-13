@@ -1,13 +1,14 @@
 package com.group1.studentsocialbackend.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.group1.studentsocialbackend.PO.Post;
+
 import com.group1.studentsocialbackend.mapper.PostMapper;
 import com.group1.studentsocialbackend.util.SessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 @Service
@@ -22,8 +23,8 @@ public class PostService {
         return post;
     }
 
-    public List<Post> getList() {
-        return postMapper.selectList(null);
+    public List<Post> getListOfUserPosts(String id) {
+        return postMapper.selectList(new QueryWrapper<Post>().eq("creator_id", id));
     }
 
 }

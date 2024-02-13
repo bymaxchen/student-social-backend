@@ -9,8 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Date;
-import java.util.Objects;
 
 @Service
 public class UserService {
@@ -20,7 +18,7 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public User createOneUser(User user) {
         user.setPassword(encryptUtil.encodePassword(user.getPassword()));
@@ -34,7 +32,6 @@ public class UserService {
     /**
      * return a token if sign successfully(Token will be saved to Mysql or Redis based on the setting)
      * otherwise, return null
-     * @param user
      * @return token
      */
     public String signIn(User user) {
