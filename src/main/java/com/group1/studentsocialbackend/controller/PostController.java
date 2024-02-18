@@ -1,6 +1,7 @@
 package com.group1.studentsocialbackend.controller;
 
 import com.group1.studentsocialbackend.PO.Post;
+import com.group1.studentsocialbackend.PO.PostDTO;
 import com.group1.studentsocialbackend.PO.User;
 import com.group1.studentsocialbackend.service.PostService;
 import com.group1.studentsocialbackend.util.SessionContext;
@@ -31,7 +32,7 @@ public class PostController {
         return new ResponseEntity<>(postService.getListOfUserPosts(SessionContext.getUserId()), HttpStatus.OK);
     }
     @GetMapping("/homeposts")
-    public ResponseEntity<List<Post>>  getPostsForHomePage(@RequestParam("page") Integer page) {
+    public ResponseEntity<List<PostDTO>>  getPostsForHomePage(@RequestParam("page") Integer page) {
         return new ResponseEntity<>(postService.getListOfPostsByTimeline(page), HttpStatus.OK);
     }
     // Get a single post by id
