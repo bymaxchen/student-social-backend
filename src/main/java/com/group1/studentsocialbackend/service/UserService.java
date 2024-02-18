@@ -43,6 +43,8 @@ public class UserService {
 
         user.setUsername(queryedUser.getUsername());
         user.setId(queryedUser.getId());
+        user.setGender(queryedUser.getGender());
+        user.setBirthdate(queryedUser.getBirthdate());
 
         return jwtUtil.generateUserToken(queryedUser);
     }
