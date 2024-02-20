@@ -27,7 +27,7 @@ public class PostService {
     public Post createOne(Post post) {
         post.setCreatorId(SessionContext.getUserId());
         post.setLikes(0);
-        post.setImageUrl("");
+        //post.setImageUrl("");
         postMapper.insert(post);
         return post;
     }
@@ -67,6 +67,7 @@ public class PostService {
             postDTO.setCreateTime(p.getCreateTime());
             postDTO.setUpdateTime(p.getUpdateTime());
             postDTO.setIsAnonymous(p.getIsAnonymous());
+            postDTO.setImageUrl(p.getImageUrl());
             String username=userMapper.selectOne(new QueryWrapper<User>().eq("id", p.getCreatorId())).getUsername();
             postDTO.setUsername(username);
             postVOlist.add(postDTO);
