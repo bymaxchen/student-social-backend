@@ -31,4 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+!logo.png
 *.png
+
