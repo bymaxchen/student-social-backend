@@ -9,13 +9,13 @@ spring:
     password: 123456
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
-#  # 图片传输
-#  servlet:
-#    multipart:
-#      # 设置单个文件最大内存
-#      max-file-size: 15MB
-#      # 设置所有文件最大内存
-#      max-request-size: 15MB
+  # 图片传输
+  servlet:
+    multipart:
+      # 设置单个文件最大内存
+      max-file-size: 15MB
+      # 设置所有文件最大内存
+      max-request-size: 15MB
 
 jwt:
   expiration: 86400000
