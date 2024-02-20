@@ -27,7 +27,15 @@ public class PostService {
     public Post createOne(Post post) {
         post.setCreatorId(SessionContext.getUserId());
         post.setLikes(0);
+        post.setImageUrl("");
         postMapper.insert(post);
+        return post;
+    }
+
+    public Post likePost(String postId) {
+        Post post=postMapper.selectOne(new QueryWrapper<Post>().eq("id", postId));
+        post.setLikes(post.getLikes()+1);
+        postMapper.updateById(post);
         return post;
     }
 

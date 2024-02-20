@@ -14,6 +14,7 @@ public class Post {
     private String title;
     private String content;
     private String creatorId;
+    private String imageUrl;
     private Integer likes;
     private Integer isAnonymous;
 

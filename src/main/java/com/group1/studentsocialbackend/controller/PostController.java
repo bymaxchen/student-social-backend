@@ -2,7 +2,6 @@ package com.group1.studentsocialbackend.controller;
 
 import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.PO.PostDTO;
-import com.group1.studentsocialbackend.PO.User;
 import com.group1.studentsocialbackend.service.PostService;
 import com.group1.studentsocialbackend.util.SessionContext;
 import jakarta.annotation.Resource;
@@ -41,11 +40,11 @@ public class PostController {
 //
 //    }
 //
-//    // Update a post
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Post> updatePost(@PathVariable Long id, @RequestBody Post postDetails) {
-//
-//    }
+    // Update a post
+    @PutMapping("/likes")
+    public ResponseEntity<Post> updatePost(@RequestParam("id") String id) {
+        return new ResponseEntity<>(postService.likePost(id), HttpStatus.OK);
+    }
 //
 //    // Delete a post
 //    @DeleteMapping("/{id}")
