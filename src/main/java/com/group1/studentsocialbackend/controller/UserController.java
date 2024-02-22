@@ -1,5 +1,6 @@
 package com.group1.studentsocialbackend.controller;
 
+import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.PO.User;
 import com.group1.studentsocialbackend.config.CookieConfig;
 import com.group1.studentsocialbackend.service.UserService;
@@ -61,5 +62,14 @@ public class UserController {
         }
         // account has already existed
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/currentuser")
+    public ResponseEntity<User> getProfile() {
+        return new ResponseEntity<>(userService.getCurrentUser(), HttpStatus.OK);
+    }
+    @PutMapping("/editprofile")
+    public ResponseEntity<User> updateProfile(@RequestBody User user) {
+        return new ResponseEntity<>(userService.editProfile(user), HttpStatus.OK);
     }
 }
