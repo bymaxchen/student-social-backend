@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-
+.DS_STORE
 !logo.png
 *.png
 *.jpg
