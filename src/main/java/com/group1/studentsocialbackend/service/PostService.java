@@ -1,6 +1,7 @@
 package com.group1.studentsocialbackend.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.group1.studentsocialbackend.DTO.CommentDTO;
 import com.group1.studentsocialbackend.DTO.PostDTO;
 import com.group1.studentsocialbackend.PO.Comment;
 import com.group1.studentsocialbackend.mapper.CommentMapper;
@@ -70,7 +71,7 @@ public class PostService {
         List<Post> postList = iPage.getRecords();
 
         //DTO data type with username
-        List<PostDTO> postVOlist= new ArrayList<>();
+        List<PostDTO> postDTOlist= new ArrayList<>();
         for(Post p: postList)
         {
             PostDTO postDTO = new PostDTO();
@@ -85,13 +86,31 @@ public class PostService {
             postDTO.setImageUrl(p.getImageUrl());
             String username=userMapper.selectOne(new QueryWrapper<User>().eq("id", p.getCreatorId())).getUsername();
             postDTO.setUsername(username);
-            postVOlist.add(postDTO);
+            postDTOlist.add(postDTO);
             System.out.println(postDTO);
         }
         //postList.forEach(System.out::println);
-        return postVOlist;
+        return postDTOlist;
     }
-    public List<Comment> getListOfComments(String id) {
-        return commentMapper.selectList(new QueryWrapper<Comment>().eq("post_id", id));
+    public List<CommentDTO> getListOfComments(String id) {
+        List<Comment> commentList = commentMapper.selectList(new QueryWrapper<Comment>().eq("post_id", id));
+        List<CommentDTO> commentDTOlist= new ArrayList<>();
+        for(Comment c: commentList)
+        {
+            CommentDTO commentDTO = new CommentDTO();
+            commentDTO.setId(c.getId());
+            commentDTO.setContent(c.getContent());
+            commentDTO.setPostId(c.getPostId());
+            commentDTO.setCreatorId(c.getCreatorId());
+            commentDTO.setCreateTime(c.getCreateTime());
+            commentDTO.setUpdateTime(c.getUpdateTime());
+            commentDTO.setIsAnonymous(c.getIsAnonymous());
+            commentDTO.setImageUrl(c.getImageUrl());
+            String username=userMapper.selectOne(new QueryWrapper<User>().eq("id", c.getCreatorId())).getUsername();
+            commentDTO.setUsername(username);
+            commentDTOlist.add(commentDTO);
+        }
+        //postList.forEach(System.out::println);
+        return commentDTOlist;
     }
 }
