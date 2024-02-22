@@ -16,6 +16,10 @@ spring:
       max-file-size: 15MB
       # 设置所有文件最大内存
       max-request-size: 15MB
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
 
 jwt:
   expiration: 86400000
