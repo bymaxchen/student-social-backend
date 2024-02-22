@@ -1,5 +1,6 @@
 package com.group1.studentsocialbackend.controller;
 
+import com.group1.studentsocialbackend.DTO.CommentDTO;
 import com.group1.studentsocialbackend.PO.Comment;
 import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.DTO.PostDTO;
@@ -37,7 +38,7 @@ public class PostController {
     }
     //Get all comment from postId
     @GetMapping("/comments")
-    public ResponseEntity<List<Comment>> getAllPostsOfCurrentUser(@RequestParam("postId") String postId) {
+    public ResponseEntity<List<CommentDTO>> getAllPostsOfCurrentUser(@RequestParam("postId") String postId) {
         return new ResponseEntity<>(postService.getListOfComments(postId), HttpStatus.OK);
     }
     // Get a single post by id
