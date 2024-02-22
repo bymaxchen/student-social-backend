@@ -10,6 +10,7 @@ import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.PO.User;
 import com.group1.studentsocialbackend.mapper.PostMapper;
 import com.group1.studentsocialbackend.util.SessionContext;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,15 @@ public class PostService {
     private PostMapper postMapper;
     @Autowired
     private UserMapper userMapper;
+
+    public PostDTO getOne(String id) {
+        Post post = postMapper.selectById(id);
+        User user = userMapper.selectById(post.getCreatorId());
+        PostDTO postDTO = new PostDTO();
+        BeanUtils.copyProperties(post, postDTO);
+        postDTO.setUsername(user.getUsername());
+        return postDTO;
+    }
 
     public Post createOne(Post post) {
         post.setCreatorId(SessionContext.getUserId());

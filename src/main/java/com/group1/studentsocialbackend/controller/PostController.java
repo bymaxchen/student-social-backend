@@ -35,10 +35,10 @@ public class PostController {
         return new ResponseEntity<>(postService.getListOfPostsByTimeline(page), HttpStatus.OK);
     }
     // Get a single post by id
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
-//
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<PostDTO> getPostById(@PathVariable String id) {
+        return new ResponseEntity<>(postService.getOne(id), HttpStatus.OK);
+    }
 //
     // Update a post
     @PutMapping("/likes")
