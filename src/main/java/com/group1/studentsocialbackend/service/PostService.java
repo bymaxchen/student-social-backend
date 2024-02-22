@@ -81,7 +81,10 @@ public class PostService {
         return postDTOlist;
     }
     public List<CommentDTO> getListOfComments(String id) {
-        List<Comment> commentList = commentMapper.selectList(new QueryWrapper<Comment>().eq("post_id", id));
+        QueryWrapper<Comment> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("post_id", id);
+        queryWrapper.orderByDesc("update_time", "create_time");
+        List<Comment> commentList = commentMapper.selectList(queryWrapper);
         List<CommentDTO> commentDTOlist= new ArrayList<>();
         for(Comment c: commentList)
         {
