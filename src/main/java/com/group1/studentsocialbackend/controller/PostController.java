@@ -1,7 +1,8 @@
 package com.group1.studentsocialbackend.controller;
 
+import com.group1.studentsocialbackend.PO.Comment;
 import com.group1.studentsocialbackend.PO.Post;
-import com.group1.studentsocialbackend.PO.PostDTO;
+import com.group1.studentsocialbackend.DTO.PostDTO;
 import com.group1.studentsocialbackend.service.PostService;
 import com.group1.studentsocialbackend.util.SessionContext;
 import jakarta.annotation.Resource;
@@ -33,6 +34,11 @@ public class PostController {
     @GetMapping("/homeposts")
     public ResponseEntity<List<PostDTO>>  getPostsForHomePage(@RequestParam("page") Integer page) {
         return new ResponseEntity<>(postService.getListOfPostsByTimeline(page), HttpStatus.OK);
+    }
+    //Get all comment from postId
+    @GetMapping("/comments")
+    public ResponseEntity<List<Comment>> getAllPostsOfCurrentUser(@RequestParam("postId") String postId) {
+        return new ResponseEntity<>(postService.getListOfComments(postId), HttpStatus.OK);
     }
     // Get a single post by id
     @GetMapping("/{id}")

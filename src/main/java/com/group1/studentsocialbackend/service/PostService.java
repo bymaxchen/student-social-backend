@@ -1,7 +1,9 @@
 package com.group1.studentsocialbackend.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.group1.studentsocialbackend.PO.PostDTO;
+import com.group1.studentsocialbackend.DTO.PostDTO;
+import com.group1.studentsocialbackend.PO.Comment;
+import com.group1.studentsocialbackend.mapper.CommentMapper;
 import com.group1.studentsocialbackend.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -25,6 +27,9 @@ public class PostService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private CommentMapper commentMapper;
+    
     public PostDTO getOne(String id) {
         Post post = postMapper.selectById(id);
         User user = userMapper.selectById(post.getCreatorId());
@@ -86,5 +91,7 @@ public class PostService {
         //postList.forEach(System.out::println);
         return postVOlist;
     }
-
+    public List<Comment> getListOfComments(String id) {
+        return commentMapper.selectList(new QueryWrapper<Comment>().eq("post_id", id));
+    }
 }
