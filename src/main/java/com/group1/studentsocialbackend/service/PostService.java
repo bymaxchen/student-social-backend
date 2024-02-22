@@ -88,6 +88,7 @@ public class PostService {
             CommentDTO commentDTO = new CommentDTO();
             commentDTO.setId(c.getId());
             commentDTO.setContent(c.getContent());
+            commentDTO.setPostId(c.getPostId());
             commentDTO.setCreatorId(c.getCreatorId());
             commentDTO.setCreateTime(c.getCreateTime());
             commentDTO.setUpdateTime(c.getUpdateTime());
