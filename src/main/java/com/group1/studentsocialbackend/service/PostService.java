@@ -1,7 +1,7 @@
 package com.group1.studentsocialbackend.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.group1.studentsocialbackend.PO.PostDTO;
+import com.group1.studentsocialbackend.DTO.PostDTO;
 import com.group1.studentsocialbackend.mapper.UserMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

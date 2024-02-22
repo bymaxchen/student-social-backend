@@ -1,7 +1,7 @@
 package com.group1.studentsocialbackend.controller;
 
 import com.group1.studentsocialbackend.PO.Post;
-import com.group1.studentsocialbackend.PO.PostDTO;
+import com.group1.studentsocialbackend.DTO.PostDTO;
 import com.group1.studentsocialbackend.service.PostService;
 import com.group1.studentsocialbackend.util.SessionContext;
 import jakarta.annotation.Resource;
