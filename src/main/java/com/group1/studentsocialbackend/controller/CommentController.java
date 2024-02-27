@@ -1,7 +1,6 @@
 package com.group1.studentsocialbackend.controller;
 
 import com.group1.studentsocialbackend.PO.Comment;
-import com.group1.studentsocialbackend.PO.Post;
 import com.group1.studentsocialbackend.service.CommentService;
 import jakarta.annotation.Resource;
 import org.springframework.http.HttpStatus;
