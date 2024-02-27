@@ -3,13 +3,19 @@ package com.group1.studentsocialbackend.websocket;
 import com.alibaba.fastjson2.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.group1.studentsocialbackend.PO.BaseResponseMessage;
+import com.group1.studentsocialbackend.PO.Message;
 import com.group1.studentsocialbackend.PO.UserMessageModel;
+import com.group1.studentsocialbackend.config.MyEndpointConfigure;
+import com.group1.studentsocialbackend.mapper.MessageMapper;
+
 import com.group1.studentsocialbackend.util.BaseModelEncoder;
 import com.group1.studentsocialbackend.util.HashMapEncoder;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -20,8 +26,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 @Slf4j
 @Component
-@ServerEndpoint(value = "/api/websocket/client/{clientId}",encoders = {HashMapEncoder.class, BaseModelEncoder.class})
+@ServerEndpoint(value = "/api/websocket/client/{clientId}",encoders = {HashMapEncoder.class, BaseModelEncoder.class},configurator= MyEndpointConfigure.class)
 public class WebSocketClient {
+    @Autowired
+    private  MessageMapper messageMapper;
 
     public static HashMap<String,WebSocketClient> webSocketClientMap = new HashMap<>();
 
@@ -84,6 +92,11 @@ public class WebSocketClient {
             webSocketClientMap.get(userMessageModel.getAcceptId()).sendMessage(BaseResponseMessage.success(userMessageModel));
             this.sendMessage(BaseResponseMessage.success(userMessageModel));
         }
+        Message savedMessage=new Message();
+        savedMessage.setSenderId(clientId);
+        savedMessage.setReceiverId(userMessageModel.getAcceptId());
+        savedMessage.setContent(userMessageModel.getMessage());
+        messageMapper.insert(savedMessage);
     }
 
     private void  sendMessage(Object message){
