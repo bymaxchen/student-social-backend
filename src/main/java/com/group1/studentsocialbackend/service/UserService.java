@@ -11,6 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 
 @Service
 public class UserService {
@@ -50,8 +52,11 @@ public class UserService {
 
         return jwtUtil.generateUserToken(queryedUser);
     }
-public User getCurrentUser(){
+    public User getCurrentUser(){
     return userMapper.selectOne(new QueryWrapper<User>().eq("id", SessionContext.getUserId()));
+    }
+    public List<User> getAllUser(){
+        return userMapper.selectList(null);
     }
     public User editProfile(User user) {
         userMapper.updateById(user);

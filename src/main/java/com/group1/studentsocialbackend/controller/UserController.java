@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -67,6 +69,10 @@ public class UserController {
     @GetMapping("/currentuser")
     public ResponseEntity<User> getProfile() {
         return new ResponseEntity<>(userService.getCurrentUser(), HttpStatus.OK);
+    }
+    @GetMapping("/allusers")
+    public ResponseEntity<List<User>> getAll() {
+        return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
     @PutMapping("/editprofile")
     public ResponseEntity<User> updateProfile(@RequestBody User user) {
