@@ -8,40 +8,40 @@
 <div id="userHeader">
 
 </div>
-消息内容：<input type="text" id="message"></in></br>
-接受人：<input type="text" id="acceptId"></in>
+message content：<input type="text" id="message"></in></br>
+receiver：<input type="text" id="acceptId"></in>
 
-<button onclick="send()">发送</button>
-<button onclick="webclose()">关闭连接</button>
+<button onclick="send()">Send</button>
+<button onclick="webclose()">Close connection</button>
 
 <div id="infoData" style="background-color: #d8aaaa;
     width: 30%;
     margin-top: 5%;"></div>
 </body>
 <script>
-    var uid = Date.now();
+    var uid = "eaa49cffb0993d96ca66c5ae79ef2939"; //using user ID instead!
     var websocket = null;
     //判断当前浏览器是否支持WebSocket
     if('WebSocket' in window) {
         websocket = new WebSocket("ws://127.0.0.1:8081/api/websocket/client/"+uid);
     } else {
-        alert('当前浏览器 Not support websocket')
+        alert('Current browser Not support websocket')
     }
 
     //连接成功建立回调方法
     websocket.onopen = function() {
-        console.log("WebSocket连接成功");
-        document.getElementById("userHeader").innerText="您的id为："+uid;
+        console.log("WebSocket connect success");
+        document.getElementById("userHeader").innerText="your id："+uid;
     }
 
     websocket.onmessage = function (event){
         console.log(event);
         var html = document.getElementById("infoData").innerHTML;
-        document.getElementById("infoData").innerHTML=html+"接受到消息："+event.data+"</br>";
+        document.getElementById("infoData").innerHTML=html+"message received："+event.data+"</br>";
     }
 
     websocket.onclose = function() {
-        alert("WebSocket连接关闭");
+        alert("WebSocket connection closed");
     }
 
     websocket.onerror = function (event){
