@@ -20,19 +20,5 @@ public class MessageController {
     public ResponseEntity<List<Message>> showHistory(@RequestParam("sendId") String sendId, @RequestParam("acceptId") String acceptId) {
         return new ResponseEntity<>(messageService.chatHistory(sendId,acceptId), HttpStatus.OK);
     }
-
-    // Get all posts
-    // Get a single post by id
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
-//
-//    }
-//
-    // Update a post
-//
-//    // Delete a post
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<?> deletePost(@PathVariable Long id) {
-//
-//    }
+    
 }
