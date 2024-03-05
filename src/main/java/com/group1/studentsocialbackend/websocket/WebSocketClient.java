@@ -85,11 +85,11 @@ public class WebSocketClient {
             List<UserMessageModel> addList = this.ToBeSentMap.get(userMessageModel.getAcceptId());
             addList.add(userMessageModel);
             log.info("客户端:{} 发送消息到接受端:{} 不在线，放置到代发送列表，当前待发送列表:{}条",clientId,userMessageModel.getAcceptId(), addList.size());
-            this.sendMessage(BaseResponseMessage.error(null,"接收端不在线"));
+            //this.sendMessage(BaseResponseMessage.error(null,"接收端不在线"));
         }else{
             log.info("客户端:{} 发送到客户端:{},消息内容:{}",clientId,userMessageModel.getAcceptId(),userMessageModel.getMessage());
             webSocketClientMap.get(userMessageModel.getAcceptId()).sendMessage(BaseResponseMessage.success(userMessageModel));
-            this.sendMessage(BaseResponseMessage.success(userMessageModel));
+            //this.sendMessage(BaseResponseMessage.success(userMessageModel));
         }
         Message savedMessage=new Message();
         savedMessage.setSenderId(clientId);

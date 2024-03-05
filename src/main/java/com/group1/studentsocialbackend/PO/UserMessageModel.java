@@ -14,7 +14,10 @@ public class UserMessageModel {
      * 发送类型：USER
      */
     private String sendType;
-
+    /**
+     * 发送端id
+     */
+    private String sendId;
     /**
      * 接收端id
      */
