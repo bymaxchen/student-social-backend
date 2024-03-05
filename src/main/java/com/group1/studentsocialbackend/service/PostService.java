@@ -54,7 +54,12 @@ public class PostService {
         postMapper.updateById(post);
         return post;
     }
-
+    public Post unlikePost(String postId) {
+        Post post=postMapper.selectOne(new QueryWrapper<Post>().eq("id", postId));
+        if(post.getLikes()>0)post.setLikes(post.getLikes()-1);
+        postMapper.updateById(post);
+        return post;
+    }
     public List<Post> getListOfUserPosts(String id) {
         return postMapper.selectList(new QueryWrapper<Post>().eq("creator_id", id));
     }

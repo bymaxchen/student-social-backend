@@ -52,6 +52,11 @@ public class PostController {
     public ResponseEntity<Post> updatePost(@RequestParam("id") String id) {
         return new ResponseEntity<>(postService.likePost(id), HttpStatus.OK);
     }
+
+    @PutMapping("/unlike")
+    public ResponseEntity<Post> unlikePost(@RequestParam("id") String id) {
+        return new ResponseEntity<>(postService.unlikePost(id), HttpStatus.OK);
+    }
 //
 //    // Delete a post
 //    @DeleteMapping("/{id}")
